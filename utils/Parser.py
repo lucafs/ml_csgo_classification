@@ -3,6 +3,19 @@ class Parser():
     def __init__(self):
         pass
 
+    def create_round_winner_columns(self, dataset):
+        dataset["round_winner_ct"] = dataset["round_winner"].apply(
+            lambda el:
+                1 if el == "CT"
+                else 0
+        )
+        dataset["round_winner_t"] = dataset["round_winner"].apply(
+            lambda el:
+                1 if el == "T"
+                else 0
+        )
+        return dataset
+
     def classify_weapons(self, dataset):
         dataset["t_main_rifle"] = (
             dataset["t_weapon_ak47"]
